@@ -3,6 +3,7 @@ package com.deal.base.control;
 /* Marzouk */
 import com.deal.base.pojo.Category;
 import com.deal.base.pojo.Product;
+import com.deal.control.DbHandler;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +13,22 @@ import org.hibernate.SessionFactory;
 
 public class ProductDAO {
 
-    Session session;
+    SessionFactory sessionFactory = null;
+    Session session = null;
     public static final String SUCCESSFUL_INSERT = "product has been added successfully";
     public static final String SUCCESSFUL_UPDATE = "product info has been updated successfully";
     public static final String SUCCESSFUL_DELETE = "product has been deleted successfully";
     public static final String DELETING_PRODUCT_ERROR = "error while deleting product";
     public static final String EXCEPTION = "exception happened";
 
-    public ProductDAO(SessionFactory sessionFactory) {
-        session = sessionFactory.openSession();
+    public ProductDAO(SessionFactory sessionFactory, Session session) {
+        this.session = session;
+        this.sessionFactory = sessionFactory;
+
     }
 
     public Product retrieveProduct(long productId) {
+        session.clear();
         Product product = null;
         try {
             Query q = session.createQuery("from Product p where productId = ?").setInteger(0, (int) productId);
@@ -31,14 +36,11 @@ public class ProductDAO {
         } catch (Exception ex) {
             System.out.println("product not found");
         }
-        //close session
-        if (session.isOpen()) {
-            session.close();
-        }
         return product;
     }
 
     public List<Product> retrieveAllProducts() {
+        session.clear();
         List<Product> products = new ArrayList<>();
         try {
             System.out.println("retrieveAllProducts() working ...");
@@ -48,14 +50,12 @@ public class ProductDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+
         return products;
     }
 
     public List<Product> retrieveCategoryProducts(Category cat) {
+        session.clear();
         List<Product> products = new ArrayList<>();
         try {
             Query q = session.createQuery("from Product p where categoryId = ?").setEntity(0, cat);
@@ -63,14 +63,12 @@ public class ProductDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+
         return products;
     }
 
     public List<Product> retrieveCategoryProducts(Long cat) {
+        session.clear();
         List<Product> products = new ArrayList<>();
         try {
             Query q = session.createQuery("from Product p where categoryId.categoryId = ?").setEntity(0, new BigDecimal(cat));
@@ -78,10 +76,7 @@ public class ProductDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+
         return products;
     }
 
@@ -96,10 +91,7 @@ public class ProductDAO {
             ex.printStackTrace();
             result = EXCEPTION;
         }
-        //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+
         return result;
     }
 
@@ -107,6 +99,7 @@ public class ProductDAO {
         String result;
         try {
             System.out.println(" ^^^^^^^^^ the updateProduct() Working .... : ^^^^^^^^^ ");
+            DbHandler.clearSessions();
             session.beginTransaction();
             session.saveOrUpdate(product);
             session.getTransaction().commit();
@@ -114,11 +107,9 @@ public class ProductDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             result = EXCEPTION;
+            session.getTransaction().rollback();
         }
-        //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+
         return result;
     }
 
@@ -136,10 +127,7 @@ public class ProductDAO {
             ex.printStackTrace();
             result = EXCEPTION;
         }
-        //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+
         return result;
     }
 
@@ -156,10 +144,7 @@ public class ProductDAO {
             ex.printStackTrace();
             result = false;
         }
-        //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+
         return result;
     }
 

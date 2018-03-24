@@ -37,7 +37,8 @@ public class LogInControl extends HttpServlet {
                 Customer customer;
                 CustomerDAO customerDao = DbHandler.getCustomerDAO();
                 customer = customerDao.retrieveCustomer(email, password);
-                Admin admin = DbHandler.getAdminDAO().retrieveAdmin(email, password);
+//                Admin admin = DbHandler.getAdminDAO().retrieveAdmin(email, password);
+                Admin admin = null;
 
                 if (customer != null) {
                     HttpSession session = request.getSession(true);
@@ -47,7 +48,7 @@ public class LogInControl extends HttpServlet {
                     session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
                     //redirect to customers page
                     System.out.println(request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1]);
-                    if (request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1].equalsIgnoreCase("DealTime")) {
+                    if (request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1].equalsIgnoreCase("DealTimeORM")) {
                         request.getRequestDispatcher("dealTime").forward(request, response);
 
                     } else {

@@ -11,8 +11,8 @@ import org.hibernate.SessionFactory;
 
 public class CategoryDAO {
 
-    Session session;
-
+    SessionFactory sessionFactory = null;
+    Session session = null;
     public static final String SUCCESSFUL_INSERT = "new category has been created successfully";
     public static final String SUCCESSFUL_UPDATE = "category has been updated successfully";
     public static final String SUCCESSFUL_DELETE = "category has been deleted successfully";
@@ -20,10 +20,10 @@ public class CategoryDAO {
     public static final String DELETING_CATEGORY_ERROR = "error while deleting category";
     public static final String EXCEPTION = "exception happened";
 
-    /* Marzouk */
-    public CategoryDAO(SessionFactory sessionFactory) {
+    public CategoryDAO(SessionFactory sessionFactory, Session session) {
+        this.session = session;
+        this.sessionFactory = sessionFactory;
 
-        session = sessionFactory.openSession();
     }
 
     public Category retrieveCategory(long categoryId) {
@@ -35,10 +35,7 @@ public class CategoryDAO {
         } catch (Exception ex) {
             System.out.println("category not found");
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+
         return category;
     }
 
@@ -51,10 +48,7 @@ public class CategoryDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+
         return categories;
     }
 
@@ -68,10 +62,6 @@ public class CategoryDAO {
             }
         } catch (Exception ex) {
             result = false;
-        }
-         //close session
-        if (session.isOpen()) {
-            session.close();
         }
         return result;
     }
@@ -134,10 +124,7 @@ public class CategoryDAO {
             ex.printStackTrace();
             result = EXCEPTION;
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+        
         return result;
     }
 
@@ -150,10 +137,7 @@ public class CategoryDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+        
         return result;
     }
 

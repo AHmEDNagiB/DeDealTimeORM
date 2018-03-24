@@ -10,7 +10,8 @@ import org.hibernate.SessionFactory;
 
 public class CustomerDAO {
 
-    Session session;
+    SessionFactory sessionFactory = null;
+    Session session = null;
     public static final String SUCCESSFUL_INSERT = "registeration has been done successfully";
     public static final String SUCCESSFUL_UPDATE = "user info has been updated successfully";
     public static final String SUCCESSFUL_DELETE = "user has been deleted successfully";
@@ -18,8 +19,10 @@ public class CustomerDAO {
     public static final String DELETING_CUSTOMER_ERROR = "error while deleting customer";
     public static final String EXCEPTION = "exception happened";
 
-    public CustomerDAO(SessionFactory sessionFactory) {
-        session = sessionFactory.openSession();
+    public CustomerDAO(SessionFactory sessionFactory, Session session) {
+        this.session = session;
+        this.sessionFactory = sessionFactory;
+
     }
 
     public Customer retrieveCustomer(long custId) {
@@ -30,10 +33,7 @@ public class CustomerDAO {
         } catch (Exception ex) {
             System.out.println("Customer not found");
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+      
         return customer;
     }
 
@@ -48,10 +48,7 @@ public class CustomerDAO {
         } catch (Exception ex) {
             System.out.println("Customer not found");
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+       
         return customer;
     }
 
@@ -63,10 +60,7 @@ public class CustomerDAO {
         } catch (Exception ex) {
             System.out.println("Customer not found");
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+       
         return customers;
     }
 
@@ -85,10 +79,7 @@ public class CustomerDAO {
             ex.printStackTrace();
             result = false;
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+    
         return result;
     }
 
@@ -108,10 +99,7 @@ public class CustomerDAO {
             ex.printStackTrace();
             result = EXCEPTION;
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+       
         return result;
     }
 // ****************** old method not working ******************
@@ -154,10 +142,7 @@ public class CustomerDAO {
             ex.printStackTrace();
             result = EXCEPTION;
         }
-         //close session
-        if (session.isOpen()) {
-            session.close();
-        }
+      
         return result;
     }
 
