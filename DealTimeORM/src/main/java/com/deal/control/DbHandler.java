@@ -37,29 +37,27 @@ public class DbHandler {
     }
 
     public static AdminDAO getAdminDAO() {
-        Connection conn = getDbConnection();
-        return new AdminDAO(conn);
+//        Connection conn = getDbConnection();
+        return new AdminDAO(sessionFactory);
     }
 
     public static CustomerDAO getCustomerDAO() {
-        Connection conn = getDbConnection();
+//        Connection conn = getDbConnection();
         return new CustomerDAO(sessionFactory);
     }
 
     public static CategoryDAO getCategoryDAO() {
-        Connection conn = getDbConnection();
+//        Connection conn = getDbConnection();
         return new CategoryDAO(sessionFactory);
     }
 
     public static ProductDAO getProductDAO() {
-        Connection conn = getDbConnection();
-
+//        Connection conn = getDbConnection();
         return new ProductDAO(sessionFactory);
     }
 
     public static OrderDAO getOrderDAO() {
-        Connection conn = getDbConnection();
-
+//        Connection conn = getDbConnection();
         return new OrderDAO(sessionFactory);
     }
 
