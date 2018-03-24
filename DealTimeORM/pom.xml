@@ -80,6 +80,7 @@
             <version>11.2.0.3</version>
             <type>jar</type>
         </dependency>
+        
         <!--        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -147,5 +148,5 @@
             </plugin>
         </plugins>
     </build>
-
+    
 </project>

@@ -8,6 +8,7 @@ package com.deal.servlet;
 import com.deal.base.control.CustomerDAO;
 import com.deal.base.control.OrderDAO;
 import com.deal.base.model.Admin;
+import com.deal.base.pojo.Admins;
 import com.deal.base.pojo.Customer;
 import com.deal.control.DbHandler;
 import com.deal.utility.Validations;
@@ -37,8 +38,7 @@ public class LogInControl extends HttpServlet {
                 Customer customer;
                 CustomerDAO customerDao = DbHandler.getCustomerDAO();
                 customer = customerDao.retrieveCustomer(email, password);
-//                Admin admin = DbHandler.getAdminDAO().retrieveAdmin(email, password);
-                Admin admin = null;
+                Admins admin = DbHandler.getAdminDAO().retrieveAdmin(email, password);
 
                 if (customer != null) {
                     HttpSession session = request.getSession(true);
@@ -48,7 +48,7 @@ public class LogInControl extends HttpServlet {
                     session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
                     //redirect to customers page
                     System.out.println(request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1]);
-                    if (request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1].equalsIgnoreCase("DealTimeORM")) {
+                    if (request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1].equalsIgnoreCase("DealTime")) {
                         request.getRequestDispatcher("dealTime").forward(request, response);
 
                     } else {

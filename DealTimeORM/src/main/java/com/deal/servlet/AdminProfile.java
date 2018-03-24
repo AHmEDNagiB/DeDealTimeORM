@@ -1,9 +1,12 @@
 package com.deal.servlet;
 
 import com.deal.base.model.Admin;
+import com.deal.base.pojo.Admins;
 import com.deal.control.DbHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,8 +38,15 @@ public class AdminProfile extends HttpServlet {
         String adminPhoneNo = request.getParameter("phoneNo");
         LocalDate adminDOB = LocalDate.parse(request.getParameter("dateOfBirth"));
         
-        Admin admin = new Admin(adminEmail, adminPassword, adminFirstName, adminLastName, adminAddress, adminJob, adminPhoneNo, adminDOB);
-        admin.setAdminId(1);
+        Admins admin = (Admins) request.getSession(false).getAttribute("loggedInUser");
+        admin.setEmail(adminEmail);
+        admin.setPassword(adminPassword);
+        admin.setFirstName(adminFirstName);
+        admin.setLastName(adminLastName);
+        admin.setAddress(adminAddress);
+        admin.setJob(adminJob);
+        admin.setPhoneNumber(adminPhoneNo);
+        admin.setDateOfBirth(Date.valueOf(adminDOB));
         String updateResult = DbHandler.getAdminDAO().updateAdmin(admin);
         response.getWriter().write(updateResult);
     }
