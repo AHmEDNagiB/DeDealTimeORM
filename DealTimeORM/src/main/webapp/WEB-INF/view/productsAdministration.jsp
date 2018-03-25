@@ -126,15 +126,15 @@
                         </thead>
                         <tbody id="products_table_body" style="display: block; overflow-y:scroll; max-height:45em; overflow: auto;">
                             <c:forEach items="${requestScope.products}" var="product">
-                                <tr style="display:table; width:100%; table-layout:fixed;" id="${product.getProductId()}" >
-                                    <td id="${product.getImageFilename()}" style="text-align: left; width: 14%;">
-                                        <img src="res/products_images/${product.getImageFilename()}" alt="No Image">
+                                <tr style="display:table; width:100%; table-layout:fixed;" id="${product.productId}" >
+                                    <td id="${product.imageFilename}" style="text-align: left; width: 14%;">
+                                        <img src="res/products_images/${product.imageFilename}" alt="No Image">
                                     </td>
                                     <td style="text-align: left; text-overflow: ellipsis; overflow: hidden; 
                                         white-space: nowrap; padding-left: 0;  width: 21%;" id="${product.getProductName()}">
                                         <a title="${product.getProductName()}">${product.getProductName()}</a>
                                     </td>
-                                    <td id="${product.getProductDesc()}" hidden/>
+                                    <td id="${product.getProductDescription()}" hidden/>
                                     <td id="${product.getAvailableQuantity()}" 
                                         style="width: 10%">${product.getAvailableQuantity()}</td>
                                     <td id="${product.getProductPrice()}" 

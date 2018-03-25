@@ -1,7 +1,7 @@
 package com.deal.servlet;
 
-import com.deal.base.model.Admin;
-import com.deal.base.pojo.Admins;
+import com.deal.base.pojo.Admin;
+import com.deal.base.pojo.Admin;
 import com.deal.control.DbHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,7 +38,7 @@ public class AdminProfile extends HttpServlet {
         String adminPhoneNo = request.getParameter("phoneNo");
         LocalDate adminDOB = LocalDate.parse(request.getParameter("dateOfBirth"));
         
-        Admins admin = (Admins) request.getSession(false).getAttribute("loggedInUser");
+        Admin admin = (Admin) request.getSession(false).getAttribute("loggedInUser");
         admin.setEmail(adminEmail);
         admin.setPassword(adminPassword);
         admin.setFirstName(adminFirstName);

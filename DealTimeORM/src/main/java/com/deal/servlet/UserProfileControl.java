@@ -10,6 +10,7 @@ import com.deal.base.pojo.Customer;
 import com.deal.control.DbHandler;
 import com.deal.utility.Validations;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -65,8 +66,13 @@ public class UserProfileControl extends HttpServlet {
 
         if (isValid) {
             CustomerDAO updatedCustomer = DbHandler.getCustomerDAO();
-//            newCustomer = new Customer(customer.getEmail(), password, firstNmae, lastName, address, job, mobileNumber, dateOfBirth, credit, "");
-//            updatedCustomer.updateCustomer(newCustomer);
+            customer.setCreditLimit(new BigDecimal(credit));
+            customer.setJob(job);
+            customer.setAddress(address);
+            customer.setPhoneNumber(mobileNumber);
+            customer.setFirstName(firstNmae);
+            updatedCustomer.updateCustomer(customer);
+            
         }
 
         doGet(request, response);

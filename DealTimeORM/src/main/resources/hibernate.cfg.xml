@@ -48,7 +48,7 @@ Contributor(s):
     <property name="hibernate.connection.password">dealtime</property>
     <mapping class="com.deal.base.pojo.Order"/>
     <mapping class="com.deal.base.pojo.Customer"/>
-    <mapping class="com.deal.base.pojo.Admins"/>
+    <mapping class="com.deal.base.pojo.Admin"/>
     <mapping class="com.deal.base.pojo.Product"/>
     <mapping class="com.deal.base.pojo.Category"/>
   </session-factory>

@@ -1,6 +1,6 @@
 package com.deal.servlet;
 
-import com.deal.base.model.Admin;
+import com.deal.base.pojo.Admin;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

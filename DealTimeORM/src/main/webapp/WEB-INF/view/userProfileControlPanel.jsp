@@ -86,7 +86,7 @@
                                         <a href="history"><i class="fa fa-list"></i> My orders</a>
                                     </li>
                                     <li>
-                                        <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
+                                        <a href="#"><i class="fa fa-heart"></i> My wishlist</a>
                                     </li>
                                    
                                 </ul>
@@ -113,13 +113,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="firstname">First name</label>
-                                            <input type="text" class="form-control" name="firstname" pattern="^[A-Za-z]+$" value="${requestScope.currentCustomer.custFirstName}" required="required" oninvalid="setCustomValidity('Characters only!')" oninput="setCustomValidity('')" disabled="true">
+                                            <input type="text" class="form-control" name="firstname" pattern="^[A-Za-z]+$" value="${requestScope.currentCustomer.firstName}" required="required" oninvalid="setCustomValidity('Characters only!')" oninput="setCustomValidity('')" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="lastname">Last name</label>
-                                            <input type="text" class="form-control" name="lastname" pattern="^[A-Za-z]+$" value="${requestScope.currentCustomer.custLastName}" required="true" oninvalid="setCustomValidity('Characters only!')" oninput="setCustomValidity('')" disabled="true">
+                                            <input type="text" class="form-control" name="lastname" pattern="^[A-Za-z]+$" value="${requestScope.currentCustomer.lastName}" required="true" oninvalid="setCustomValidity('Characters only!')" oninput="setCustomValidity('')" disabled="true">
                                         </div>
                                     </div>
                                 </div>
@@ -130,13 +130,13 @@
                                         <div class="form-group">
                                             <label for="email">Email</label>
 
-                                            <input type="email" class="form-control" name="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="${requestScope.currentCustomer.custEmail}" required="true" oninvalid="setCustomValidity('Enter a valid email!')" oninput="setCustomValidity('')" disabled="true">
+                                            <input type="email" class="form-control" name="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="${requestScope.currentCustomer.email}" required="true" oninvalid="setCustomValidity('Enter a valid email!')" oninput="setCustomValidity('')" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Date of birth</label>
-                                            <input type="date" class="form-control" name="dateOfBirth" value="${requestScope.currentCustomer.custDateOfBirth}" required="true" oninput="setCustomValidity('')" disabled="true">
+                                            <input type="date" class="form-control" name="dateOfBirth" value="${requestScope.currentCustomer.dateOfBirth}" required="true" oninput="setCustomValidity('')" disabled="true">
                                         </div>
                                     </div>
                                 </div>
@@ -145,13 +145,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Password</label>
-                                            <input type="password" class="form-control" name="password" id="password" value="${requestScope.currentCustomer.custPassword}" required="true" disabled="true">
+                                            <input type="password" class="form-control" name="password" id="password" value="${requestScope.currentCustomer.password}" required="true" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Confirm password</label>
-                                            <input type="password" class="form-control" name="confirmPassword" id="confirm_password"  value="${requestScope.currentCustomer.custPassword}" required="true" disabled="true">
+                                            <input type="password" class="form-control" name="confirmPassword" id="confirm_password"  value="${requestScope.currentCustomer.password}" required="true" disabled="true">
                                         </div>
                                     </div>
                                 </div>
@@ -160,13 +160,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="company">Job</label>
-                                            <input type="text" class="form-control" name="job" pattern="^[A-Za-z]+$" value="${requestScope.currentCustomer.custJob}" required="true" oninvalid="setCustomValidity('Characters only!')" oninput="setCustomValidity('')" disabled="true">
+                                            <input type="text" class="form-control" name="job" pattern="^[A-Za-z]+$" value="${requestScope.currentCustomer.job}" required="true" oninvalid="setCustomValidity('Characters only!')" oninput="setCustomValidity('')" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="street">Address</label>
-                                            <input type="text" class="form-control" name="address" value="${requestScope.currentCustomer.custAddress}" required="true" oninput="setCustomValidity('')" disabled="true">
+                                            <input type="text" class="form-control" name="address" value="${requestScope.currentCustomer.address}" required="true" oninput="setCustomValidity('')" disabled="true">
                                         </div>
                                     </div>
                                 </div>
@@ -176,13 +176,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="zip">Credit</label>
-                                            <input type="text" class="form-control" name="credit" pattern="\d+(\.\d{2})?" value="${requestScope.currentCustomer.custCreditLimit}" required="true" oninvalid="setCustomValidity('Please match 1.00 format')" oninput="setCustomValidity('')" disabled="true">
+                                            <input type="text" class="form-control" name="credit" pattern="\d+(\.\d{2})?" value="${requestScope.currentCustomer.creditLimit}" required="true" oninvalid="setCustomValidity('Please match 1.00 format')" oninput="setCustomValidity('')" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="phone">Phone number</label>
-                                            <input type="text" class="form-control" name="mobileNumber" pattern="01\d{9}" value="${requestScope.currentCustomer.custMobileNumber}" required="true" oninvalid="setCustomValidity('Please match 01xxxxxxxxx format')" oninput="setCustomValidity('')" disabled="true">
+                                            <input type="text" class="form-control" name="mobileNumber" pattern="01\d{9}" value="${requestScope.currentCustomer.phoneNumber}" required="true" oninvalid="setCustomValidity('Please match 01xxxxxxxxx format')" oninput="setCustomValidity('')" disabled="true">
                                         </div>
                                     </div>
 

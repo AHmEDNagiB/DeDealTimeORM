@@ -3,11 +3,9 @@ package com.deal.control;
 import com.deal.base.control.AdminDAO;
 import com.deal.base.control.CategoryDAO;
 import com.deal.base.control.CustomerDAO;
-import com.deal.base.control.DbConn;
 import com.deal.base.control.OrderDAO;
 import com.deal.base.control.ProductDAO;
 import java.sql.Connection;
-import java.sql.SQLException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -33,7 +31,6 @@ public class DbHandler {
 
     private static Connection getDbConnection() {
         Connection mConn = null;
-        System.out.println("calling getDbConnection() ...");
         try {
             if (sessionFactory == null) {
                 System.out.println("************** loading hibernate.cfg.xml **************");
@@ -48,7 +45,6 @@ public class DbHandler {
                 stats.setStatisticsEnabled(true);
 
             }
-            
             System.out.println("stats.getSessionOpenCount() : " + stats.getSessionOpenCount());
 
         } catch (Exception ex) {
@@ -59,9 +55,9 @@ public class DbHandler {
 
     public static AdminDAO getAdminDAO() {
         Connection conn = getDbConnection();
-//        if (adminDAO == null) {
-//            adminDAO = new AdminDAO(sessionFactory, categoryDAOSession);
-//        }
+        if (adminDAO == null) {
+            adminDAO = new AdminDAO(sessionFactory, categoryDAOSession);
+        }
         return adminDAO;
     }
 

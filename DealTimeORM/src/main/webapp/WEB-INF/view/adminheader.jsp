@@ -57,7 +57,7 @@
                 <div class="col-md-6" >
                     <c:if test="${not empty sessionScope.loggedInUser}">
                         <ul class="menu">
-                            <li><a href="userProfile" ><c:out value="${sessionScope.loggedInUser.getAdminFirstName()}"/></a>
+                            <li><a href="userProfile" ><c:out value="${sessionScope.loggedInUser.firstName}"/></a>
                             </li>
                             
                         </ul>                    </c:if>

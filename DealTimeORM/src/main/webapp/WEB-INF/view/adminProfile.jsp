@@ -57,13 +57,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="firstname">First name</label>
-                            <input type="text" class="form-control" name="firstname" pattern="^[A-Za-z]+$" value="${requestScope.admin.adminFirstName}" required="true" oninvalid="setCustomValidity('Characters only!')" disabled="true">
+                            <input type="text" class="form-control" name="firstname" pattern="^[A-Za-z]+$" value="${requestScope.admin.firstName}" required="true" oninvalid="setCustomValidity('Characters only!')" disabled="true">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="lastname">Last name</label>
-                            <input type="text" class="form-control" name="lastname" pattern="^[A-Za-z]+$" value="${requestScope.admin.adminLastName}" required="true" oninvalid="setCustomValidity('Characters only!')" disabled="true">
+                            <input type="text" class="form-control" name="lastname" pattern="^[A-Za-z]+$" value="${requestScope.admin.lastName}" required="true" oninvalid="setCustomValidity('Characters only!')" disabled="true">
                         </div>
                     </div>
                 </div>
@@ -73,13 +73,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="${requestScope.admin.adminEmail}" required="true" oninvalid="setCustomValidity('Enter a valid email!')" disabled="true">
+                            <input type="text" class="form-control" name="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="${requestScope.admin.email}" required="true" oninvalid="setCustomValidity('Enter a valid email!')" disabled="true">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="dateOfBirth">Date of birth</label>
-                            <input type="date" class="form-control" name="dateOfBirth" value="${requestScope.admin.adminDateOfBirth}" required="true" disabled="true">
+                            <input type="date" class="form-control" name="dateOfBirth" value="${requestScope.admin.dateOfBirth}" required="true" disabled="true">
                         </div>
                     </div>
                 </div>
@@ -88,13 +88,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" pattern="?=.{8,}" value="${requestScope.admin.adminPassword}" required="true"  oninvalid="setCustomValidity('Must be at least 8 characters!')" disabled="true">
+                            <input type="password" class="form-control" name="password" pattern="?=.{8,}" value="${requestScope.admin.password}" required="true"  oninvalid="setCustomValidity('Must be at least 8 characters!')" disabled="true">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="confirmPassword">Confirm password</label>
-                            <input type="password" class="form-control" name="confirmPassword" pattern="?=.{8,}" value="${requestScope.admin.adminPassword}" required="true" oninvalid="setCustomValidity('Must be at least 8 characters!')" disabled="true">
+                            <input type="password" class="form-control" name="confirmPassword" pattern="?=.{8,}" value="${requestScope.admin.password}" required="true" oninvalid="setCustomValidity('Must be at least 8 characters!')" disabled="true">
                         </div>
                     </div>
                 </div>
@@ -103,13 +103,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="company">Job</label>
-                            <input type="text" class="form-control" name="job" pattern="[a-zA-Z][a-zA-Z][a-zA-Z]" value="${requestScope.admin.adminJob}" required="true" oninvalid="setCustomValidity('Characters only!')" disabled="true">
+                            <input type="text" class="form-control" name="job" pattern="[a-zA-Z][a-zA-Z][a-zA-Z]" value="${requestScope.admin.job}" required="true" oninvalid="setCustomValidity('Characters only!')" disabled="true">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="street">Address</label>
-                            <input type="text" class="form-control" name="address" value="${requestScope.admin.adminAddress}" required="true" disabled="true">
+                            <input type="text" class="form-control" name="address" value="${requestScope.admin.address}" required="true" disabled="true">
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="phone">Phone number</label>
-                            <input type="text" class="form-control" name="phoneNo" value="${requestScope.admin.adminPhoneNo}" required="true" oninvalid="setCustomValidity('Phone number must match 01xxxxxxxxx')" disabled="true">
+                            <input type="text" class="form-control" name="phoneNo" value="${requestScope.admin.phoneNumber}" required="true" oninvalid="setCustomValidity('Phone number must match 01xxxxxxxxx')" disabled="true">
                         </div>
                     </div>
 

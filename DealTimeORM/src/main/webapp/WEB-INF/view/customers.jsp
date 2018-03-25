@@ -52,13 +52,13 @@
                                 <tbody style="font-size: 0.97em;">
                                     <c:forEach items="${requestScope.allCustomers}" var="customer">
                                         <tr id="${customer.getCustId()}">
-                                            <td>${customer.getCustEmail()}</td>
-                                            <td>${customer.getCustFirstName()} ${customer.getCustLastName()}</td>
-                                            <td>${customer.getCustAddress()}</td>
-                                            <td style="text-align: center;">${customer.getCustMobileNumber()}</td>
-                                            <td style="text-align: center;">${customer.getCustDateOfBirth()}</td>
-                                            <td style="text-align: center;">${customer.getCustJob()}</td>
-                                            <td style="text-align: center;">${customer.getCustCreditLimit()}</td>
+                                            <td>${customer.email}</td>
+                                            <td>${customer.firstName} ${customer.lastName}</td>
+                                            <td>${customer.address}</td>
+                                            <td style="text-align: center;">${customer.phoneNumber}</td>
+                                            <td style="text-align: center;">${customer.dateOfBirth}</td>
+                                            <td style="text-align: center;">${customer.job}</td>
+                                            <td style="text-align: center;">${customer.creditLimit}</td>
                                         </tr>
                                     </c:forEach> 
                                 </tbody>

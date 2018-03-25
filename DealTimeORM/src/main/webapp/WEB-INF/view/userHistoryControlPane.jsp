@@ -86,7 +86,7 @@
                                         <a href="userCartControl"><i class="fa fa-list"></i> My orders</a>
                                     </li>
                                     <li>
-                                        <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
+                                        <a href="#"><i class="fa fa-heart"></i> My wishlist</a>
                                     </li>
 
                                 </ul>

@@ -1,7 +1,7 @@
 package com.deal.base.control;
 
-/* Marzouk */
-import com.deal.base.pojo.Admins;
+import com.deal.base.pojo.Admin;
+import com.deal.control.DbHandler;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -10,44 +10,39 @@ import org.hibernate.SessionFactory;
 
 public class AdminDAO {
 
-    private Session mSession;
-
-    // private Connection mConn;
+    SessionFactory sessionFactory = null;
+    Session mSession = null;
     public static final String SUCCESSFUL_INSERT = "new admin has been registered successfully";
     public static final String SUCCESSFUL_UPDATE = "admin info has been updated successfully";
     public static final String SUCCESSFUL_DELETE = "admin has been deleted successfully";
     public static final String EXISTING_EMAIL = "This email already exists";
     public static final String EXCEPTION = "exception happened";
 
-    public AdminDAO(SessionFactory sessionFactory) {
-        // mConn = c;
-        mSession = sessionFactory.openSession();
+    public AdminDAO(SessionFactory sessionFactory, Session session) {
+        this.mSession = session;
+        this.sessionFactory = sessionFactory;
+
     }
 
-    public Admins retrieveAdmin(String email, String password) {
-        Admins admin = null;
+    public Admin retrieveAdmin(String email, String password) {
+        Admin admin = null;
         try {
-            Query q = mSession.createQuery("SELECT A FROM Admins AS A where "
+            Query q = mSession.createQuery("SELECT A FROM Admin AS A where "
                     + "A.email = ? and A.password = ?")
                     .setString(0, email)
                     .setString(1, password);
-            admin = (Admins) q.list().get(0);
+            admin = (Admin) q.list().get(0);
         } catch (Exception ex) {
             System.out.println("Admin not found");
-        } finally {
-            //close session
-            if (mSession.isOpen()) {
-                mSession.close();
-            }
         }
         return admin;
     }
 
     private boolean checkEmailExistance(String email) {
         boolean result = false;
-        List<Admins> admins = new ArrayList();
+        List<Admin> admins = new ArrayList();
         try {
-            Query q = mSession.createQuery("SELECT A FROM Admins AS A where "
+            Query q = mSession.createQuery("SELECT A FROM Admin AS A where "
                     + " upper(A.email) = ? ")
                     .setString(0, email.toUpperCase());
             admins = q.list();
@@ -57,16 +52,11 @@ public class AdminDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             result = false;
-        } finally {
-            //close session
-            if (mSession.isOpen()) {
-                mSession.close();
-            }
         }
         return result;
     }
 
-    public String insertAdmin(Admins admin) {
+    public String insertAdmin(Admin admin) {
         String result;
         boolean isAdminExisting = checkEmailExistance(admin.getEmail());
         try {
@@ -81,20 +71,15 @@ public class AdminDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             result = EXCEPTION;
-        } finally {
-            //close session
-            if (mSession.isOpen()) {
-                mSession.close();
-            }
         }
         return result;
     }
 
-    private boolean checkEmailRepetition(Admins admin) {
+    private boolean checkEmailRepetition(Admin admin) {
         boolean result = false;
-        List<Admins> admins = new ArrayList();
+        List<Admin> admins = new ArrayList();
         try {
-            Query q = mSession.createQuery("SELECT A FROM Admins AS A where "
+            Query q = mSession.createQuery("SELECT A FROM Admin AS A where "
                     + " upper(A.email) = ? "
                     + " and A.adminId = ? ")
                     .setString(0, admin.getEmail().toUpperCase())
@@ -106,22 +91,18 @@ public class AdminDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             result = false;
-        } finally {
-            //close session
-            if (mSession.isOpen()) {
-                mSession.close();
-            }
         }
         return result;
     }
 
-    public String updateAdmin(Admins admin) {
+    public String updateAdmin(Admin admin) {
         String result;
         boolean isAdminExisting = checkEmailRepetition(admin);
         try {
             if (isAdminExisting) {
                 result = EXISTING_EMAIL;
             } else {
+                DbHandler.evictObject(admin);
                 mSession.beginTransaction();
                 mSession.saveOrUpdate(admin);
                 mSession.getTransaction().commit();
@@ -130,16 +111,11 @@ public class AdminDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             result = EXCEPTION;
-        } finally {
-            //close session
-            if (mSession.isOpen()) {
-                mSession.close();
-            }
         }
         return result;
     }
 
-    public String deleteAdmin(Admins admin) {
+    public String deleteAdmin(Admin admin) {
         String result;
         try {
             mSession.delete(admin);
@@ -147,11 +123,6 @@ public class AdminDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             result = EXCEPTION;
-        } finally {
-            //close session
-            if (mSession.isOpen()) {
-                mSession.close();
-            }
         }
         return result;
     }
